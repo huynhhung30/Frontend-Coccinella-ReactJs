@@ -1,6 +1,6 @@
 import axios from "axios";
 import _ from "lodash";
-import config from "./config";
+// import config from "./config";
 require("dotenv").config();
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL || 1919,

@@ -2,36 +2,63 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
+import { getUsersList } from "../../services/userService";
 class UserManage extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrUsers: [],
+    };
+  }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    let res = await getUsersList("all");
+    if (res && res.status === 200) {
+      this.setState({
+        arrUsers: res.data,
+      });
+    }
+    console.log("getUsersList", res);
+  }
 
   render() {
+    let arrUsers = this.state.arrUsers;
     return (
-      <div class="row">
-        <div class="content">
-          <ul class="team">
-            <li class="member co-funder">
-              <div class="thumb">
-                <img src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120"></img>
-              </div>
-              <div class="description">
-                <h3>Chris Coyier</h3>
-                <p>
-                  Chris is a front-end developer and designer. He writes a bunch
-                  of HTML, CSS, and JavaScript and shakes the pom-poms for
-                  CodePen.
-                  <br />
-                  <a href="https://codepen.io/chriscoyier/">@chriscoyier</a>
-                </p>
-              </div>
-            </li>
-            <li class="member co-funder">
-              <div class="thumb">
+      <div className="user-container">
+        <div className="content">
+          <ul className="team">
+            {arrUsers &&
+              arrUsers.map((item, index) => {
+                return (
+                  <li className="member co-funder">
+                    <div className="thumb">
+                      <img src="https://assets.codepen.io/3/internal/avatars/users/default.png?fit=crop&format=auto&height=120&width=120"></img>
+                    </div>
+                    <div className="description">
+                      <h3>{item.codeName}</h3>
+                      <p>
+                        {item.introduce}
+                        <br />
+                        <a href="https://codepen.io/chriscoyier/">
+                          {item.phone}
+                        </a>
+                        <button href="https://codepen.io/chriscoyier/">
+                          EDIT
+                        </button>
+                        <button href="https://codepen.io/chriscoyier/">
+                          DELETE
+                        </button>
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+
+            {/* <li className="member co-funder">
+              <div className="thumb">
                 <img src="https://assets.codepen.io/2/internal/avatars/users/default.png?height=120&width=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Alex Vazquez</h3>
                 <p>
                   Alex is a full stack developer. Alex does JavaScript
@@ -42,11 +69,11 @@ class UserManage extends Component {
                 </p>
               </div>
             </li>
-            <li class="member">
-              <div class="thumb">
+            <li className="member">
+              <div className="thumb">
                 <img src="https://assets.codepen.io/652/internal/avatars/users/default.png?height=120&width=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Marie Mosley</h3>
                 <p>
                   Marie wears a lot of hats. She is our documentation lead,
@@ -56,11 +83,11 @@ class UserManage extends Component {
                 </p>
               </div>
             </li>
-            <li class="member">
-              <div class="thumb">
+            <li className="member">
+              <div className="thumb">
                 <img src="https://assets.codepen.io/39255/internal/avatars/users/default.png?height=120&width=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Stephen Shaw</h3>
                 <p>
                   Stephen is a designer/developer residing in Houston. He likes
@@ -70,11 +97,11 @@ class UserManage extends Component {
                 </p>
               </div>
             </li>
-            <li class="member">
-              <div class="thumb">
+            <li className="member">
+              <div className="thumb">
                 <img src="https://cpwebassets.codepen.io/assets/packs/about-rachelsmith-6878ca76a1d9200e6c296e810050b8cb.jpg?height=120&width=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Rachel Smith</h3>
                 <p>
                   Rachel is a full stack'er in Australia. Not only a creative
@@ -85,11 +112,11 @@ class UserManage extends Component {
                 </p>
               </div>
             </li>
-            <li class="member">
-              <div class="thumb">
+            <li className="member">
+              <div className="thumb">
                 <img src="https://cpwebassets.codepen.io/assets/packs/about-robertkieffer-77c28f3a6efe082fd1903affae540b8a.jpg?height=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Robert Kieffer</h3>
                 <p>
                   Robert is a full-stack dev with a penchant for open-source
@@ -99,11 +126,11 @@ class UserManage extends Component {
                 </p>
               </div>
             </li>
-            <li class="member">
-              <div class="thumb">
+            <li className="member">
+              <div className="thumb">
                 <img src="https://cpwebassets.codepen.io/assets/packs/about-deevazquez-c8e8b7f9e803f462b7be19ea60b9272f.jpg?height=120&width=120"></img>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>Dee Vazquez</h3>
                 <p>
                   Dee is a full stack developer who started her career in
@@ -113,7 +140,7 @@ class UserManage extends Component {
                   <a href="https://codepen.io/deequez/">@deequez</a>
                 </p>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
