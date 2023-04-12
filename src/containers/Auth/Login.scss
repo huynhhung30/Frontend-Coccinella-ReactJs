@@ -1,0 +1,146 @@
+.login-background {
+  background-size: contain;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  .login-container {
+    background-color: #fde881;
+    width: 50%;
+    height: 50%;
+    border-radius: 19px;
+
+    margin: auto;
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    .login-image {
+      border-radius: 19px;
+      width: 50%;
+      min-height: 100%;
+      background-color: #fde881;
+    }
+    .login-content {
+      border-radius: 19px;
+      background-color: #fde881;
+      .button {
+        .button-89 {
+          --b: 3px; /* border thickness */
+          --s: 0.45em; /* size of the corner */
+          --color: rgba(30, 32, 44, 0.95);
+
+          padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+          color: var(--color);
+          --_p: var(--s);
+          background: conic-gradient(
+              from 90deg at var(--b) var(--b),
+              #0000 90deg,
+              var(--color) 0
+            )
+            var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+            calc(100% - var(--b) - 2 * var(--_p));
+          transition: 0.3s linear, color 0s, background-color 0s;
+          outline: var(--b) solid #0000;
+          outline-offset: 0.6em;
+          font-size: 16px;
+
+          border: 0;
+
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+        }
+
+        .button-89:hover,
+        .button-89:focus-visible {
+          --_p: 0px;
+          outline-color: var(--color);
+          outline-offset: 0.05em;
+        }
+
+        .button-89:active {
+          background: var(--color);
+          color: #fff;
+        }
+      }
+      font-family: monospace;
+      width: 50%;
+      min-height: 100%;
+
+      .text-center {
+        font-size: 30px;
+        font-family: monospace;
+        font-weight: bolder;
+      }
+      .button {
+        text-align: center;
+        .button-89 {
+          font-weight: 500;
+          color: rgb(0, 0, 0);
+          width: 300px;
+          height: 50px;
+        }
+      }
+      .col-12 {
+        input {
+          height: 50px;
+        }
+        .form-password {
+          display: flex;
+          justify-content: space-between;
+          .input-password {
+            input {
+              height: 50px;
+              width: 350px;
+            }
+          }
+        }
+        padding-top: 19px;
+        .checkbox-wrapper-41 {
+          --size: 100px;
+        }
+
+        .checkbox-wrapper-41 input[type="checkbox"] {
+          -webkit-appearance: none;
+          width: var(--size);
+          height: calc(var(--size) / 2);
+          background-color: #fff;
+          border: 3px solid #222;
+          border-radius: 30px 100px 100px 100px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          outline: none;
+          cursor: pointer;
+          position: relative;
+          transition: all 0.5s;
+        }
+
+        .checkbox-wrapper-41 input[type="checkbox"]::before {
+          content: "";
+          position: absolute;
+          width: calc(var(--size) / 2);
+          height: calc(var(--size) / 2);
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%) scale(0.7);
+          border: 3px solid #222;
+          border-radius: 30px 100px 100px 100px;
+          background-color: #fde881;
+          box-sizing: border-box;
+          transition: all 0.5s;
+        }
+
+        .checkbox-wrapper-41 input[type="checkbox"]:checked {
+          background-color: #fde881;
+          border-radius: 100px 100px 30px 100px;
+        }
+
+        .checkbox-wrapper-41 input[type="checkbox"]:checked::before {
+          left: 50%;
+          background-color: #fff;
+          border-radius: 100px 100px 30px 100px;
+        }
+      }
+    }
+  }
+}
