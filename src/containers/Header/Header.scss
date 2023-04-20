@@ -1,23 +1,26 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index: 99;
-    display: flex;
-    justify-content: space-between;
-    background-color: $colormain;
-    color: $common-text-color;
+  .navigator-menu {
+    background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
+  }
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
+  color: var(--yellow);
+  height: 40px;
+  position: relative;
+  .btn-logout {
+    color: var(--yellow);
+    line-height: 40px;
     height: 40px;
-    position: relative;
-    .btn-logout {
-        color: $common-text-color;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 10px;
-        &:hover {
-            background-color: darken($colormain, 5);
-        }
-        i {
-            font-size: $base-size + 1px;
-        }
+    padding: 0 10px;
+    &:hover {
+      background-color: var(--yellow);
     }
+    i {
+      font-size: $base-size + 1px;
+    }
+  }
 }

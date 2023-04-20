@@ -6,12 +6,20 @@
   --deg: -86deg;
   --trans: all 0.4s ease 0s;
 }
+body {
+  background: linear-gradient(90deg, #131417, var(--dark) 35% 65%, #131417);
+}
 
 .user-container {
+  .user-list {
+    width: 60%;
+    height: auto;
+  }
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: center;
   font-family: "Lato", Arial, Helvetica, serif;
   background: linear-gradient(90deg, #131417, var(--dark) 35% 65%, #131417);
@@ -25,6 +33,7 @@
 }
 
 .user-container {
+  align-items: center;
   // width: 90vmin;
 }
 
@@ -38,6 +47,7 @@ h2 {
 }
 
 .member {
+  width: 100%;
   margin: 1.5em 0 0.5em;
   padding: 0.73em;
   background: linear-gradient(
@@ -156,7 +166,7 @@ h3 {
 }
 
 .co-funder:after {
-  content: "CO-FUNDER";
+  content: "MEMBER";
   font-size: 0.75em;
   position: absolute;
   top: -1.5em;
