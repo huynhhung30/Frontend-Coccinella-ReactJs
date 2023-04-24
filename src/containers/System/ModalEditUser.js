@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import "./ModalUser.scss";
+import "./ModalEditUser.scss";
 import { emitter } from "../../utils/Emitter";
-class ModalUser extends Component {
+import _ from "lodash";
+class ModalEditUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       email: "",
       password: "",
       codeName: "",
@@ -18,22 +20,22 @@ class ModalUser extends Component {
       gender: true,
       introduce: "",
     };
-    this.listenToEmitter();
   }
-  listenToEmitter() {
-    emitter.on("EVENT_CLEAR_DATA", (data) => {
+  componentDidMount() {
+    let user = this.props.userInfo;
+    if (user && !_.isEmpty(user)) {
       this.setState({
-        email: "",
-        password: "",
-        codeName: "",
-        firstName: "",
-        lastName: "",
-        address: "",
-        phone: "",
-        gender: true,
-        introduce: "",
+        id: user.id,
+        email: user.email,
+        password: "hash_code",
+        codeName: user.codeName,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        address: user.address,
+        phone: user.phone,
+        introduce: user.introduce,
       });
-    });
+    }
   }
   checkValidateInput = () => {
     let arrInput = [
@@ -56,32 +58,27 @@ class ModalUser extends Component {
     }
     return idValid;
   };
-  handleCreateUser = () => {
-    let isValid = this.checkValidateInput();
-    if (isValid === true) {
-      this.props.createNewUser(this.state);
-    }
-  };
 
   handleOnchangeInput = (event, id) => {
     let copyState = { ...this.state };
-
     copyState[id] = event.target.value;
-    console.log("-=copyState[id]=-=", copyState[id]);
-
-    console.log("-=-event.target.value=-=", event.target.value);
-
     this.setState({
       ...copyState,
     });
-    console.log("-=-copyState=-=", copyState);
   };
-  componentDidMount() {}
+
   toggle = () => {
     this.props.toggle();
   };
+  handleSaveUser = async () => {
+    let isValid = this.checkValidateInput();
+    if (isValid === true) {
+      this.props.editUser(this.state);
+    }
+  };
 
   render() {
+    console.log("userInfo", this.props.userInfo);
     return (
       <Modal
         centered
@@ -95,7 +92,7 @@ class ModalUser extends Component {
         <ModalBody className="modal-user">
           <div className="content">
             <form autocomplete="off" id="form">
-              <h1 id="message">Get Started</h1>
+              <h1 id="message">Edit User</h1>
               <small id="smallMessage"> </small>
               <div className="field">
                 <input
@@ -106,6 +103,7 @@ class ModalUser extends Component {
                   autocomplete="off"
                   onChange={(event) => this.handleOnchangeInput(event, "email")}
                   value={this.state.email}
+                  disabled
                 />
                 <label for="email">Email</label>
               </div>
@@ -203,16 +201,17 @@ class ModalUser extends Component {
                     this.handleOnchangeInput(event, "password")
                   }
                   value={this.state.password}
+                  disabled
                 />
                 <label for="password">Password</label>
               </div>
               <a
                 className="button-submit"
                 onClick={() => {
-                  this.handleCreateUser();
+                  this.handleSaveUser();
                 }}
               >
-                Create My Account
+                Save
               </a>
               <p>
                 By signing up, I agree to to the Terms of Service and Privacy
@@ -234,4 +233,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);

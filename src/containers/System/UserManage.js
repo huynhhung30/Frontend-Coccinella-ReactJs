@@ -2,14 +2,25 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
-import { getUsersList, createNewUserService } from "../../services/userService";
+import {
+  getUsersList,
+  createNewUserService,
+  deleteUserService,
+  editUserService,
+} from "../../services/userService";
 import ModalUser from "./ModalUser";
+import ModalEditUser from "./ModalEditUser";
+
+import { emitter } from "../../utils/Emitter";
+
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrUsers: [],
       isOpenModalUser: false,
+      isOpenModalEditUser: false,
+      userInfo: {},
     };
   }
 
@@ -17,22 +28,28 @@ class UserManage extends Component {
     await this.getAllUsers();
   }
   getAllUsers = async () => {
-    let res = await getUsersList("all");
-    if (res && res.status === 200) {
+    let res = await getUsersList("all", 5, 1);
+    console.log("res", res);
+    if (res && res.data && res.data.data && res.data.status === 200) {
       this.setState({
-        arrUsers: res.data,
+        arrUsers: res.data.data,
       });
     }
   };
   createNewUser = async (data) => {
     try {
       let res = await createNewUserService(data);
-      if (res && res.status === 200) {
-        alert(res.message);
-      } else {
+      if (res && res.data && res.data.status === 200) {
+        alert(res.data.message);
         await this.getAllUsers();
+        this.setState({
+          isOpenModalUser: false,
+        });
+        emitter.emit("EVENT_CLEAR_DATA", { id: "your_id" });
+      } else {
+        console.log(res);
+        alert(res.data.message);
       }
-      console.log("res", res);
     } catch (e) {
       console.log("e", e);
     }
@@ -47,6 +64,50 @@ class UserManage extends Component {
       isOpenModalUser: !this.state.isOpenModalUser,
     });
   };
+  handleToggleEditUserModal = () => {
+    this.setState({
+      isOpenModalEditUser: !this.state.isOpenModalEditUser,
+    });
+  };
+  handleDeleteUser = async (user) => {
+    alert("handleDeleteUser");
+    try {
+      let res = await deleteUserService(user.id);
+      if (res && res.data && res.data.status === 200) {
+        alert(res.data.message);
+        await this.getAllUsers();
+      } else {
+        alert(res.data.message);
+      }
+    } catch (e) {
+      console.log("e", e);
+    }
+  };
+  handleEditUser = async (user) => {
+    this.setState({
+      isOpenModalEditUser: true,
+      userInfo: user,
+    });
+  };
+  editUser = async (user) => {
+    try {
+      let res = await editUserService(user);
+      console.log("=-=-=-", res);
+      if (res && res.data.status === 201) {
+        alert(res.data.message);
+        await this.getAllUsers();
+        this.setState({
+          isOpenModalEditUser: false,
+        });
+      } else {
+        console.log(res);
+        alert(res.data.message);
+      }
+    } catch (e) {
+      console.log("e", e);
+    }
+  };
+
   render() {
     let arrUsers = this.state.arrUsers;
     return (
@@ -77,10 +138,18 @@ class UserManage extends Component {
                           <a href="https://codepen.io/chriscoyier/">
                             {item.phone}
                           </a>
-                          <button href="https://codepen.io/chriscoyier/">
+                          <button
+                            href="https://codepen.io/chriscoyier/"
+                            onClick={() => {
+                              this.handleEditUser(item);
+                            }}
+                          >
                             EDIT
                           </button>
-                          <button href="https://codepen.io/chriscoyier/">
+                          <button
+                            href="https://codepen.io/chriscoyier/"
+                            onClick={() => this.handleDeleteUser(item)}
+                          >
                             DELETE
                           </button>
                         </p>
@@ -96,6 +165,14 @@ class UserManage extends Component {
           toggle={this.handleToggleUserModal}
           createNewUser={this.createNewUser}
         />
+        {this.state.isOpenModalEditUser && (
+          <ModalEditUser
+            isOpen={this.state.isOpenModalEditUser}
+            toggle={this.handleToggleEditUserModal}
+            userInfo={this.state.userInfo}
+            editUser={this.editUser}
+          />
+        )}
       </div>
     );
   }
