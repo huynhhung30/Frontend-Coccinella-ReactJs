@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+.wrap {
+  background-color: #f8f8f8;
+  font-family: "Luckiest Guy", cursive;
+
+  .wrap-top {
+    background-color: #000000;
+    .container {
+      justify-content: space-between;
+      .row {
+        .content-left {
+          .name-gmail {
+            cursor: pointer;
+            font-family: "Luckiest Guy", cursive;
+            color: #c96e6e;
+            font-size: 16px;
+            padding: 7px 0 0 11px;
+          }
+          display: flex;
+        }
+        .content-right {
+          .social {
+            cursor: pointer;
+            margin-right: 5px;
+          }
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+      color: aliceblue;
+    }
+  }
+  .wrap-pot {
+    background-color: bisque;
+    .container {
+      color: aliceblue;
+      .pot {
+        .content-left {
+          display: flex;
+          justify-content: space-between;
+          .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Luckiest Guy", cursive;
+            margin-top: 4px;
+            font-size: 4px;
+            h1 {
+              margin: 0;
+              font-size: 8em;
+              padding: 0;
+              color: #c96e6e;
+              text-shadow: 0 0.1em 20px rgba(0, 0, 0, 1),
+                0.05em -0.03em 0 rgba(0, 0, 0, 1),
+                0.05em 0.005em 0 rgba(0, 0, 0, 1), 0em 0.08em 0 rgba(0, 0, 0, 1),
+                0.05em 0.08em 0 rgba(0, 0, 0, 1), 0px -0.03em 0 rgba(0, 0, 0, 1),
+                -0.03em -0.03em 0 rgba(0, 0, 0, 1),
+                -0.03em 0.08em 0 rgba(0, 0, 0, 1), -0.03em 0 0 rgba(0, 0, 0, 1);
+              span {
+                transform: scale(0.9);
+                display: inline-block;
+              }
+              span:first-child {
+                animation: bop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+                  forwards infinite alternate;
+              }
+              span:last-child {
+                animation: bopB 1s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+                  forwards infinite alternate;
+              }
+            }
+          }
+        }
+        .content-mid {
+          .button {
+            font-size: 24px;
+            margin: auto;
+            --b: 0.1em; /* the thickness of the line */
+            --c: #c96e6e; /* the color */
+
+            color: #0000;
+            padding-block: var(--b);
+            background: linear-gradient(var(--c) 50%, #000 0) 0%
+                calc(100% - var(--_p, 0%)) / 100% 200%,
+              linear-gradient(var(--c) 0 0) 0% var(--_p, 0%) / var(--_p, 0%)
+                var(--b) no-repeat;
+            -webkit-background-clip: text, padding-box;
+            background-clip: text, padding-box;
+            transition: 0.3s var(--_s, 0s) linear,
+              background-size 0.3s calc(0.3s - var(--_s, 0s));
+          }
+          .button:hover {
+            --_p: 100%;
+            --_s: 0.3s;
+            cursor: pointer;
+          }
+          height: 80px;
+          display: flex;
+          justify-content: space-between;
+        }
+        .content-right {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          margin: 10px;
+          padding: 0;
+
+          font-family: "Luckiest Guy", cursive;
+          * {
+            box-sizing: border-box;
+          }
+          label {
+            width: 100%;
+            max-width: 300px;
+          }
+          input {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            padding: 15px;
+            background-color: bisque;
+            border: 2px solid black;
+            color: #111;
+            font-size: 15px;
+            box-shadow: 3px 1px 0px 2px, 0px -1px 0px 2px rgba(0, 0, 0, 0.62);
+            height: 40px;
+            transform: skew(-3deg, 1deg);
+            font-family: "Luckiest Guy", cursive;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            &:focus,
+            &:valid {
+              outline: none;
+              ~ ul li {
+                @for $i from 1 through 6 {
+                  &:nth-child(#{$i}) {
+                    &::before {
+                      filter: blur(20px);
+                      transform: translate(0, -35px) rotate(-210deg);
+                    }
+                    &::after {
+                      filter: blur(0);
+                      transform: scale(1) rotate(0);
+                    }
+                  }
+                }
+                @for $i from 1 through 6 {
+                  &:nth-child(#{$i}) {
+                    &::after {
+                      transition-delay: 200ms + ($i * 200ms);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          label {
+            position: relative;
+          }
+          ul {
+            position: absolute;
+            top: 38px;
+            left: -4px;
+            margin: 0;
+            list-style: none;
+            padding-left: 22px;
+            position: absolute;
+            display: flex;
+            pointer-events: none;
+            transition: 200ms;
+            li {
+              letter-spacing: 3px;
+              text-transform: uppercase;
+              color: transparent;
+              pointer-events: none;
+              transition: 500ms ease-in-out;
+              ::selection {
+                color: transparent;
+              }
+              &::after,
+              &::before {
+                color: black;
+                position: absolute;
+                transition: 500ms ease-in-out;
+              }
+              &::before {
+                top: -20px;
+              }
+              &::after {
+                top: -63px;
+                transform: scale(0) rotate(210deg);
+                filter: blur(20px);
+              }
+            }
+            $chars: s, e, a, r, c, h;
+            @each $char in $chars {
+              $i: index($chars, $char);
+              $x: index($chars, $char);
+              $i: $i * 200;
+              $y: $x * 12;
+              &[#{$char}]::before {
+                content: attr($char) quote($char);
+                transition-delay: $i + ms;
+              }
+              &[#{$char}]::after {
+                content: attr($char) quote($char);
+                left: unquote($y + "px");
+                color: rgb(222, 0, 0);
+              }
+            }
+          }
+        }
+        color: #202020;
+      }
+    }
+  }
+}
+
+@keyframes bop {
+  0% {
+    transform: scale(0.9);
+  }
+  50%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bopB {
+  0% {
+    transform: scale(0.9);
+  }
+  80%,
+  100% {
+    transform: scale(1) rotateZ(-3deg);
+  }
+}
