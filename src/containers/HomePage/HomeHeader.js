@@ -6,9 +6,16 @@ import gmail from "../../assets/images/gmail.png";
 import facebook from "../../assets/images/facebook.png";
 import instagram from "../../assets/images/instagram.png";
 import coccinella from "../../assets/images/coccinella.png";
-
+import { LANGUAGE } from "../../utils";
+import { changeLanguageApp } from "../../store/actions";
+import { FormattedMessage } from "react-intl";
 class HomeHeader extends Component {
+  changeLanguage = (language) => {
+    this.props.changeLanguageApp(language);
+    console.log("=-=-=-=-=-=-", language);
+  };
   render() {
+    let language = this.props.language;
     return (
       <div className="wrap">
         <div className="wrap-top">
@@ -26,6 +33,25 @@ class HomeHeader extends Component {
               </div>
               <div className="col-sm-6">
                 <div className="content-right">
+                  <div className="social translate">
+                    <div class="radio-group">
+                      <input
+                        type="radio"
+                        id="option-one"
+                        name="selector"
+                        onClick={() => this.changeLanguage(LANGUAGE.VI)}
+                      />
+                      <label for="option-one">VN</label>
+                      <input
+                        type="radio"
+                        id="option-two"
+                        name="selector"
+                        onClick={() => this.changeLanguage(LANGUAGE.EN)}
+                        checked
+                      />
+                      <label for="option-two">ENG</label>
+                    </div>
+                  </div>
                   <div className="social instagram">
                     <img src={instagram} width="35px" height="35px" />
                   </div>
@@ -57,9 +83,15 @@ class HomeHeader extends Component {
               </div>
               <div className="col-sm-4">
                 <div className="content-mid">
-                  <div className="button home">HOME</div>
-                  <div className="button contact">CONTACT</div>
-                  <div className="button info">ACCOUNT</div>
+                  <div className="button home">
+                    <FormattedMessage id="HOME_HEADER.HOME" />
+                  </div>
+                  <div className="button contact">
+                    <FormattedMessage id="HOME_HEADER.CONTACT" />
+                  </div>
+                  <div className="button info">
+                    <FormattedMessage id="HOME_HEADER.ACCOUNT" />
+                  </div>
                 </div>
               </div>
               <div className="col-sm-4">
@@ -82,7 +114,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguageApp: (language) => dispatch(changeLanguageApp(language)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

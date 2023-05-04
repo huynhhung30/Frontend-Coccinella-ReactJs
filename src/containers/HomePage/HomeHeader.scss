@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+$newspaper_background: #fff8ed;
 .wrap {
   background-color: #f8f8f8;
   font-family: "Luckiest Guy", cursive;
@@ -9,6 +10,8 @@
       justify-content: space-between;
       .row {
         .content-left {
+          padding-top: 5px;
+
           .name-gmail {
             cursor: pointer;
             font-family: "Luckiest Guy", cursive;
@@ -19,9 +22,47 @@
           display: flex;
         }
         .content-right {
+          padding-top: 5px;
+
           .social {
             cursor: pointer;
             margin-right: 5px;
+          }
+          .translate {
+            $bg: #332f35;
+            $fg: lighten($bg, 20%);
+            $borderWidth: 3px;
+
+            input[type="radio"] {
+              position: absolute;
+              visibility: hidden;
+              display: none;
+            }
+
+            label {
+              color: lighten($bg, 40%);
+              display: inline-block;
+              cursor: pointer;
+              font-weight: bold;
+              padding: 5px 20px;
+            }
+
+            input[type="radio"]:checked + label {
+              color: lighten($bg, 60%);
+              background: $fg;
+            }
+
+            label + input[type="radio"] + label {
+              border-left: solid $borderWidth $fg;
+            }
+            .radio-group {
+              border: solid $borderWidth $fg;
+              display: inline-block;
+              border-radius: 10px;
+              overflow: hidden;
+            }
+
+            @import url("https://fonts.googleapis.com/css?family=Roboto");
           }
           display: flex;
           justify-content: flex-end;
@@ -119,7 +160,7 @@
             width: 100%;
             display: flex;
             padding: 15px;
-            background-color: bisque;
+            background-color: $newspaper_background;
             border: 2px solid black;
             color: #111;
             font-size: 15px;
