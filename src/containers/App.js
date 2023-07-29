@@ -17,6 +17,7 @@ import Login from "./Auth/Login";
 import Header from "./Header/Header";
 import System from "../routes/System";
 import HomePage from "./HomePage/HomePage";
+import BenHome from "./HomePage/BenHome";
 import CustomScrollbars from "../components/CustomScrollbars.js";
 import { CustomToastCloseButton } from "../components/CustomToast";
 import ConfirmModal from "../components/ConfirmModal";
@@ -64,6 +65,7 @@ class App extends Component {
                     component={userIsAuthenticated(System)}
                   />
                   <Route path={path.HOMEPAGE} component={HomePage} />
+                  <Route path={path.BENHOME} component={BenHome} />
                 </Switch>
               </CustomScrollbars>
             </div>
