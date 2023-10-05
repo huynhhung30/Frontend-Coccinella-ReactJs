@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import "./BenHome.scss";
-import HomeHeader from "./HomeHeader";
+import BenHeader from "../Header/BenHeader";
 
 class BenHome extends Component {
   render() {
-    return <React.Fragment>Ben Hello World</React.Fragment>;
+    return (
+      <div>
+        <BenHeader />
+        Ben Hello World
+      </div>
+    );
   }
 }
 
