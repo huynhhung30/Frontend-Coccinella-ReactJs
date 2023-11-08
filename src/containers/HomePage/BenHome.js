@@ -7,9 +7,8 @@ import BenHeader from "../Header/BenHeader";
 class BenHome extends Component {
   render() {
     return (
-      <div>
+      <div className="ben-home">
         <BenHeader />
-        Ben Hello World
       </div>
     );
   }

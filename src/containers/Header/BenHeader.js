@@ -5,53 +5,47 @@ import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
 import "./BenHeader.scss";
 import ben from "../../assets/images/ben.png";
+import latte from "../../assets/images/latte.png";
+import cub from "../../assets/images/cub.png";
+import hector from "../../assets/images/hector1.png";
 class BenHeader extends Component {
   render() {
     const { processLogout } = this.props;
 
     return (
       <React.Fragment>
-        <nav>
-          <div class="navbar">
-            <div class="nav-container">
-              <input class="checkbox" type="checkbox" name="" id="" />
-
-              <div class="hamburger-lines">
-                <div class="hamburger-menu">
-                  <span class="line line1"></span>
-                  <span class="line line2"></span>
-                  <span class="line line3"></span>
+        <div className="ben-header">
+          <input type="checkbox" id="burger-toggle"></input>
+          <label for="burger-toggle" className="burger-menu">
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </label>
+          <div className="menu">
+            <div className="menu-inner">
+              <div className="gallery">
+                <div className="ben-logo">
+                  <div className="ben-logo-top"></div>
+                  <div className="ben-logo-mid">
+                    <img src={ben} />
+                  </div>
+                  <div className="ben-logo-bottom">contact</div>
                 </div>
-                <div class="menu-text">MENU</div>
-              </div>
-              <div class="contact">
-                <a href="#" target="_blank">
-                  CONTACT
-                </a>
-              </div>
-              <div class="menu-items">
-                <li>
-                  <a href="#">Home</a>
-                </li>
-                <li>
-                  <a href="#">about</a>
-                </li>
-                <li>
-                  <a href="#">blogs</a>
-                </li>
-                <li>
-                  <a href="#">portfolio</a>
-                </li>
-                <li>
-                  <a href="#">contact</a>
-                </li>
-                <div class="ben-logo">
-                  <img src={ben} />
+                <div className="title-menu">
+                  <p>home</p>
+                  <p>services</p>
+                  <p>about us</p>
+                  <div>
+                    <img src={hector} />
+                  </div>
                 </div>
+              </div>
+              <div className="image-menu">
+                <img src={cub} />
               </div>
             </div>
           </div>
-        </nav>
+        </div>
       </React.Fragment>
     );
   }
