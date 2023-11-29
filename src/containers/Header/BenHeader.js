@@ -5,7 +5,7 @@ import * as actions from "../../store/actions";
 import Navigator from "../../components/Navigator";
 import "./BenHeader.scss";
 import ben from "../../assets/images/ben.png";
-import latte from "../../assets/images/latte.png";
+import vinyl from "../../assets/images/vinyl.png";
 import cub from "../../assets/images/cub.png";
 import hector from "../../assets/images/hector1.png";
 class BenHeader extends Component {
@@ -26,22 +26,19 @@ class BenHeader extends Component {
               <div className="gallery">
                 <div className="ben-logo">
                   <div className="ben-logo-top"></div>
-                  <div className="ben-logo-mid">
+                  <div className="ben-logo-bottom">
                     <img src={ben} />
                   </div>
-                  <div className="ben-logo-bottom">contact</div>
                 </div>
                 <div className="title-menu">
-                  <p>home</p>
-                  <p>services</p>
-                  <p>about us</p>
-                  <div>
-                    <img src={hector} />
-                  </div>
+                  <div className="text home">home</div>
+                  <div className="text services">services</div>
+                  <div className="text about">about us</div>
+                  <div className="text contact">contact</div>
                 </div>
               </div>
               <div className="image-menu">
-                <img src={cub} />
+                <img src={vinyl} />
               </div>
             </div>
           </div>

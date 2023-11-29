@@ -14,11 +14,6 @@
 
 .ben-header {
   .menu {
-    font-size: 21px;
-    line-height: 100%;
-    text-transform: capitalize;
-    font-family: futura;
-    color: #1a1a1a;
     .menu-inner {
       width: 100%;
       height: 100%;
@@ -31,11 +26,47 @@
         .title-menu {
           width: 82%;
           padding-top: 120px;
-          p {
+          .text {
+            --c: linear-gradient(#1a1a1a 0 0); /* update the color here */
+            background: var(--c), var(--c);
+            background-size: 0.3em 0.1em;
+            background-position: 50% 100%;
+            background-repeat: no-repeat;
+            transition: 0.3s linear, background-size 0.3s 0.2s linear;
+          }
+          .text:hover {
+            background-size: 40% 0.1em;
+            background-position: 10% 100%, 90% 100%;
+          }
+          /**/
+          [class] {
+            display: table;
+            vertical-align: middle;
+          }
+          .contact {
+            margin-top: 250px;
             transform: translateY(100%);
+          }
+          .home {
+            transform: translateY(-100%);
+          }
+          .services {
+            transform: translateX(-100%);
+          }
+          .about {
+            transform: translateX(100%);
+          }
+          .text {
+            font-size: 16px;
+            line-height: 100%;
+            text-transform: capitalize;
+            font-family: futura;
+            cursor: pointer;
+            color: #1a1a1a;
             overflow: hidden;
-            height: 30px;
-            padding-left: 96px;
+            height: 18px;
+            margin-left: 96px;
+            margin-bottom: 20px;
           }
 
           img {
@@ -46,23 +77,21 @@
         .ben-logo {
           border-right: 2px solid #b4b4b41a;
           width: 18%;
-          display: grid;
-          grid-template-rows: repeat(3, 1fr);
-          row-gap: 20px;
-          padding: 5px 5px 5px 5px;
-
           .ben-logo-top {
+            height: 50%;
           }
-          .ben-logo-mid {
+          .ben-logo-bottom {
+            height: 50%;
+            justify-content: center;
+            display: flex;
+            align-items: flex-end;
             img {
               height: 100px;
               width: 100px;
               display: flex;
-              transform: translateY(50%);
+              transform: translateY(-50%);
               padding: 5px;
             }
-          }
-          .ben-logo-bottom {
           }
         }
       }
@@ -72,7 +101,7 @@
       img {
         width: -webkit-fill-available;
         height: -webkit-fill-available;
-        transform: translateY(50%);
+        transform: translateX(10%);
       }
     }
   }
@@ -88,7 +117,7 @@
       opacity: 1;
       visibility: visible;
       img,
-      .title-menu p {
+      .title-menu .text {
         transform: translateY(0);
         transition: 1.2s 0.1s cubic-bezier(0.35, 0, 0.07, 1);
       }
